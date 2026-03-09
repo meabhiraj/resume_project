@@ -4,20 +4,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
 
     // CTA button click handler
     const ctaButton = document.querySelector('.hero-bg button');
-    ctaButton.addEventListener('click', function() {
-        window.location.href = 'builder.html';
-    });
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function() {
+            window.location.href = 'builder.html';
+        });
+    }
 
     // ATS calculator form submission
     const atsForm = document.getElementById('ats-form');
@@ -72,11 +77,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add some animation to the resume preview on hover
     const resumePreview = document.querySelector('.resume-preview');
-    resumePreview.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05)';
-        this.style.transition = 'transform 0.3s ease';
-    });
-    resumePreview.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-    });
+    if (resumePreview) {
+        resumePreview.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        resumePreview.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Logout functionality
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            alert('You have been logged out.');
+            window.location.href = 'login.html';
+        });
+    }
+
+    // Mobile logout functionality
+    const logoutBtnMobile = document.getElementById('logout-btn-mobile');
+    if (logoutBtnMobile) {
+        logoutBtnMobile.addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            alert('You have been logged out.');
+            window.location.href = 'login.html';
+        });
+    }
 });

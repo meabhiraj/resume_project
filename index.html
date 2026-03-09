@@ -10,11 +10,22 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
                 <div class="text-2xl font-bold blue-accent">Resume</div>
-                <nav class="space-x-8">
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#builder" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
+                    <a href="#parser" class="text-gray-700 hover:text-blue-600 transition">Parser</a>
+                    <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
+                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
+                </nav>
+                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button">☰</button>
+            </div>
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg z-10">
+                <nav class="flex flex-col space-y-4 p-4">
                     <a href="#builder" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
                     <a href="#parser" class="text-gray-700 hover:text-blue-600 transition">Parser</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
@@ -31,7 +42,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h1 class="text-5xl font-bold mb-6">Create a professional resume easily.</h1>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Create a professional resume easily.</h1>
                     <p class="text-xl text-gray-600 mb-8">With this free, open-source, and powerful resume builder.</p>
                     <div class="flex space-x-4">
                         <button class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105">Create Resume →</button>
@@ -39,7 +50,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <div class="resume-preview bg-white p-8 rounded-lg w-[28rem] min-h-[28rem] relative shadow-md text-sm">
+                    <div class="resume-preview bg-white p-8 rounded-lg w-full max-w-sm md:max-w-md lg:w-[28rem] min-h-[28rem] relative shadow-md text-sm">
                         <div class="border-b-2 border-blue-200 pb-2 mb-2">
                             <h2 class="text-xl font-bold text-blue-700">Jane Doe</h2>
                             <div class="text-gray-600">jane.doe@email.com | (555) 123-4567</div>
