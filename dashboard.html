@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Resume Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <a href="index.html" class="text-2xl font-bold blue-accent">Resume</a>
+                <nav class="space-x-8 flex items-center">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition">Dashboard</a>
+                    <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
+                    <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-lg shadow">
+                <h1 class="text-3xl font-bold mb-4">Welcome to Your Dashboard</h1>
+                <p id="user-email" class="text-gray-600 mb-6"></p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-blue-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2">Resume Builder</h3>
+                        <p class="text-gray-600 mb-4">Create and customize your professional resume.</p>
+                        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Start Building</a>
+                    </div>
+                    <div class="bg-green-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2">ATS Score</h3>
+                        <p class="text-gray-600 mb-4">Check your resume's ATS compatibility score.</p>
+                        <a href="ats.html" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Check Score</a>
+                    </div>
+                    <div class="bg-purple-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2">Courses</h3>
+                        <p class="text-gray-600 mb-4">Learn resume writing and interview skills.</p>
+                        <a href="courses.html" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display user email
+            const userEmail = localStorage.getItem('userEmail');
+            document.getElementById('user-email').textContent = `Logged in as: ${userEmail}`;
+            
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userEmail');
+                    alert('You have been logged out.');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

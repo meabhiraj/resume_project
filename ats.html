@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Score Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <a href="index.html" class="text-2xl font-bold blue-accent">Resume</a>
+                <nav class="space-x-8 flex items-center">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="dashboard.html" class="text-gray-700 hover:text-blue-600 transition">Dashboard</a>
+                    <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>                    <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 rounded-lg shadow">
+            <h1 class="text-3xl font-bold mb-6">ATS Score Calculator</h1>
+            <p class="text-gray-600 mb-4">Paste your resume text and the job description keywords to get an estimated ATS compatibility score.</p>
+            <form id="ats-form" class="space-y-6">
+                <div>
+                    <label for="resume-file" class="block font-semibold mb-2">Upload resume file</label>
+                    <input id="resume-file" type="file" accept=".txt,.pdf,.doc,.docx" class="w-full" />
+                </div>
+                <div>                    <label for="keywords" class="block font-semibold mb-2">Keywords (comma-separated)</label>
+                    <input id="keywords" type="text" class="w-full border-gray-300 rounded-md" placeholder="e.g. JavaScript, React, Tailwind">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Calculate Score</button>
+            </form>
+            <p id="ats-result" class="mt-6 text-lg font-semibold"></p>
+        </div>
+    </section>
+
+    <!--
+        Inline ATS scoring logic (duplicate of script.js) so the calculator
+        works even if external JS isn't loaded or for clarity when viewing
+        this file directly.
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                alert('Please login to access this page.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const atsForm = document.getElementById('ats-form');
+            if (atsForm) {
+                atsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const keywordsText = document.getElementById('keywords').value.toLowerCase();
+                    const keywords = keywordsText.split(',').map(k => k.trim()).filter(k => k);
+                    if (keywords.length === 0) {
+                        alert('Please enter at least one keyword.');
+                        return;
+                    }
+                    function calculateScore(text) {
+                        const resumeText = text.toLowerCase();
+                        let matches = 0;
+                        keywords.forEach(k => {
+                            const regex = new RegExp(`\\b${k}\\b`, 'g');
+                            const found = resumeText.match(regex);
+                            if (found) matches += found.length;
+                        });
+                        return Math.min(100, Math.round((matches / keywords.length) * 100));
+                    }
+                    const fileInput = document.getElementById('resume-file');
+                    if (fileInput && fileInput.files && fileInput.files[0]) {
+                        const file = fileInput.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function(evt) {
+                            const text = evt.target.result || '';
+                            const score = calculateScore(text);
+                            document.getElementById('ats-result').textContent = `Estimated ATS score: ${score}%`;
+                        };
+                        reader.readAsText(file);
+                    } else {
+                        document.getElementById('ats-result').textContent = 'Please upload a resume file.';
+                    }
+                });
+            }
+            
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userEmail');
+                    alert('You have been logged out.');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <a href="index.html" class="text-2xl font-bold blue-accent">Resume</a>
+                <nav class="space-x-8 flex items-center">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="dashboard.html" class="text-gray-700 hover:text-blue-600 transition">Dashboard</a>
+                    <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>                    <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold mb-6 text-center">IT Courses</h1>
+            <p class="text-gray-600 mb-8 text-center">Explore our IT courses to enhance your technical skills and advance your career.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/rfscVS0vtbw/maxresdefault.jpg" alt="Programming Basics" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Introduction to Programming</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn the fundamentals of programming with Python, covering variables, loops, and basic algorithms.</p>
+                        <p class="text-gray-500 text-xs">Tech Academy • 8 hours • 15K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/PkZNo7MFNFg/maxresdefault.jpg" alt="Web Development" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Web Development Fundamentals</h3>
+                        <p class="text-gray-600 text-sm mb-2">Master HTML, CSS, and JavaScript to build responsive and interactive websites.</p>
+                        <p class="text-gray-500 text-xs">Code Masters • 12 hours • 22K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ua-CiDNNj30" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ua-CiDNNj30/maxresdefault.jpg" alt="Data Science" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Data Science Essentials</h3>
+                        <p class="text-gray-600 text-sm mb-2">Dive into data analysis, visualization, and machine learning basics using Python and popular libraries.</p>
+                        <p class="text-gray-500 text-xs">Data Insights • 10 hours • 18K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/3Kq1MIfTWCE/maxresdefault.jpg" alt="Cybersecurity" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Cybersecurity Fundamentals</h3>
+                        <p class="text-gray-600 text-sm mb-2">Understand network security, encryption, and best practices to protect digital assets.</p>
+                        <p class="text-gray-500 text-xs">SecureTech • 9 hours • 12K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ulprqHHWlng" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ulprqHHWlng/maxresdefault.jpg" alt="Cloud Computing" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Cloud Computing with AWS</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn to deploy and manage applications on Amazon Web Services cloud platform.</p>
+                        <p class="text-gray-500 text-xs">Cloud Experts • 14 hours • 25K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=j5Zsa_eOXeY" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/j5Zsa_eOXeY/maxresdefault.jpg" alt="DevOps" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">DevOps Practices</h3>
+                        <p class="text-gray-600 text-sm mb-2">Explore CI/CD pipelines, containerization with Docker, and infrastructure as code.</p>
+                        <p class="text-gray-500 text-xs">DevOps Pro • 11 hours • 20K views</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-center">Marketing Courses</h2>
+            <p class="text-gray-600 mb-8 text-center">Learn marketing skills to promote products and grow businesses.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://www.youtube.com/watch?v=7VM7Im55OlM" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/7VM7Im55OlM/maxresdefault.jpg" alt="Digital Marketing" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Digital Marketing Fundamentals</h3>
+                        <p class="text-gray-600 text-sm mb-2">Master online marketing strategies including SEO, social media, and email marketing.</p>
+                        <p class="text-gray-500 text-xs">Marketing Pro • 6 hours • 30K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=hF515-0Tduk" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/hF515-0Tduk/maxresdefault.jpg" alt="SEO" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">SEO for Beginners</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn search engine optimization techniques to improve website visibility.</p>
+                        <p class="text-gray-500 text-xs">SEO Experts • 5 hours • 25K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=0hEi_jX8K9c" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/0hEi_jX8K9c/maxresdefault.jpg" alt="Social Media Marketing" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Social Media Marketing</h3>
+                        <p class="text-gray-600 text-sm mb-2">Build engaging social media campaigns across platforms like Facebook, Instagram, and Twitter.</p>
+                        <p class="text-gray-500 text-xs">Social Guru • 7 hours • 35K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/rfscVS0vtbw/maxresdefault.jpg" alt="Email Marketing" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Email Marketing Mastery</h3>
+                        <p class="text-gray-600 text-sm mb-2">Create effective email campaigns that convert leads into customers.</p>
+                        <p class="text-gray-500 text-xs">Email Pro • 4 hours • 20K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/PkZNo7MFNFg/maxresdefault.jpg" alt="PPC Advertising" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">PPC Advertising</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn pay-per-click advertising on Google Ads and other platforms.</p>
+                        <p class="text-gray-500 text-xs">Ad Masters • 8 hours • 28K views</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-center">Design Courses</h2>
+            <p class="text-gray-600 mb-8 text-center">Enhance your creative skills with design courses for digital and print media.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://www.youtube.com/watch?v=c9Wg6Cb_YlU" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/c9Wg6Cb_YlU/maxresdefault.jpg" alt="UI/UX Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">UI/UX Design Principles</h3>
+                        <p class="text-gray-600 text-sm mb-2">Design user-friendly interfaces and experiences for web and mobile applications.</p>
+                        <p class="text-gray-500 text-xs">Design Studio • 10 hours • 40K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ua-CiDNNj30" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ua-CiDNNj30/maxresdefault.jpg" alt="Graphic Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Graphic Design Basics</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn color theory, typography, and composition for stunning visuals.</p>
+                        <p class="text-gray-500 text-xs">Creative Arts • 9 hours • 32K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/3Kq1MIfTWCE/maxresdefault.jpg" alt="Adobe Photoshop" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Adobe Photoshop Mastery</h3>
+                        <p class="text-gray-600 text-sm mb-2">Master photo editing, retouching, and digital art creation.</p>
+                        <p class="text-gray-500 text-xs">Photo Pro • 12 hours • 45K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ulprqHHWlng" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ulprqHHWlng/maxresdefault.jpg" alt="Illustration" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Digital Illustration</h3>
+                        <p class="text-gray-600 text-sm mb-2">Create beautiful illustrations using digital tools and techniques.</p>
+                        <p class="text-gray-500 text-xs">Art Academy • 11 hours • 38K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=j5Zsa_eOXeY" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/j5Zsa_eOXeY/maxresdefault.jpg" alt="Branding" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Brand Identity Design</h3>
+                        <p class="text-gray-600 text-sm mb-2">Develop logos, brand guidelines, and cohesive visual identities.</p>
+                        <p class="text-gray-500 text-xs">Brand Experts • 8 hours • 30K views</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-center">Business Courses</h2>
+            <p class="text-gray-600 mb-8 text-center">Build business acumen and leadership skills for entrepreneurial success.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/rfscVS0vtbw/maxresdefault.jpg" alt="Entrepreneurship" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Entrepreneurship Fundamentals</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn how to start and run a successful business from idea to execution.</p>
+                        <p class="text-gray-500 text-xs">Biz Academy • 10 hours • 50K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/PkZNo7MFNFg/maxresdefault.jpg" alt="Finance Basics" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Personal Finance Management</h3>
+                        <p class="text-gray-600 text-sm mb-2">Master budgeting, investing, and financial planning for personal wealth.</p>
+                        <p class="text-gray-500 text-xs">Finance Guru • 7 hours • 42K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ua-CiDNNj30" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ua-CiDNNj30/maxresdefault.jpg" alt="Project Management" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Project Management Essentials</h3>
+                        <p class="text-gray-600 text-sm mb-2">Learn agile methodologies, risk management, and team coordination.</p>
+                        <p class="text-gray-500 text-xs">PM Experts • 9 hours • 35K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/3Kq1MIfTWCE/maxresdefault.jpg" alt="Leadership" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Leadership and Management</h3>
+                        <p class="text-gray-600 text-sm mb-2">Develop leadership skills, motivation techniques, and team building strategies.</p>
+                        <p class="text-gray-500 text-xs">Leadership Lab • 8 hours • 48K views</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ulprqHHWlng" target="_blank" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://img.youtube.com/vi/ulprqHHWlng/maxresdefault.jpg" alt="Business Strategy" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Strategic Business Planning</h3>
+                        <p class="text-gray-600 text-sm mb-2">Create comprehensive business plans and strategic roadmaps for growth.</p>
+                        <p class="text-gray-500 text-xs">Strategy Masters • 11 hours • 40K views</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                alert('Please login to access this page.');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userEmail');
+                    alert('You have been logged out.');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
