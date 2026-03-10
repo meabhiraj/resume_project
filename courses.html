@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>The Resume Builder - Courses</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <header class="bg-white shadow-sm relative">
+    <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
-                <a href="index.html" class="text-2xl font-bold blue-accent">Resume</a>
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="images/logo.png" alt="Resume Builder Logo" class="h-8 w-auto">
+                    <span class="text-2xl font-bold blue-accent hidden sm:inline">The Resume Builder</span>
+                </a>
                 <nav class="hidden md:flex space-x-8 flex items-center">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
                     <a href="dashboard.html" class="text-gray-700 hover:text-blue-600 transition">Dashboard</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
-                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>                    <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Logout</button>
+                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
                 </nav>
-                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button">☰</button>
+                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
             </div>
-            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg z-10">
+            <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
                 <nav class="flex flex-col space-y-4 p-4">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
                     <a href="dashboard.html" class="text-gray-700 hover:text-blue-600 transition">Dashboard</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
                     <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
                     <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <button id="logout-btn-mobile" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition w-full text-left">Logout</button>
                 </nav>
             </div>
         </div>

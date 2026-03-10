@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Professional Resume Builder</title>
+    <title>The Resume Builder - Professional Resume Builder</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-900">
     <!-- Header -->
-    <header class="bg-white shadow-sm relative">
+    <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
-                <div class="text-2xl font-bold blue-accent">Resume</div>
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="images/logo.png" alt="Resume Builder Logo" class="h-8 w-auto">
+                    <span class="text-2xl font-bold blue-accent hidden sm:inline">The Resume Builder</span>
+                </a>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#builder" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
-                    <a href="#parser" class="text-gray-700 hover:text-blue-600 transition">Parser</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="builder.html" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
                     <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
                     <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
                 </nav>
-                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button">☰</button>
+                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
             </div>
             <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg z-10">
                 <nav class="flex flex-col space-y-4 p-4">
-                    <a href="#builder" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
-                    <a href="#parser" class="text-gray-700 hover:text-blue-600 transition">Parser</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="builder.html" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
                     <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
                     <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
                 </nav>
+            </div>
             </div>
         </div>
     </header>
@@ -42,15 +44,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Create a professional resume easily.</h1>
+                    <h1 class="text-5xl font-bold mb-6">Create a professional resume easily.</h1>
                     <p class="text-xl text-gray-600 mb-8">With this free, open-source, and powerful resume builder.</p>
                     <div class="flex space-x-4">
-                        <button class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105">Create Resume →</button>
+                        <a href="builder.html" class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 inline-block">Create Resume →</a>
                         <a href="ats.html" class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 inline-block">ATS Score</a>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <div class="resume-preview bg-white p-8 rounded-lg w-full max-w-sm md:max-w-md lg:w-[28rem] min-h-[28rem] relative shadow-md text-sm">
+                    <div class="resume-preview bg-white p-8 rounded-lg w-[28rem] min-h-[28rem] relative shadow-md text-sm">
                         <div class="border-b-2 border-blue-200 pb-2 mb-2">
                             <h2 class="text-xl font-bold text-blue-700">Jane Doe</h2>
                             <div class="text-gray-600">jane.doe@email.com | (555) 123-4567</div>
@@ -122,6 +124,41 @@
                     </div>
                     <h3 class="text-lg font-semibold">Download new resume</h3>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Todo List Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Resume Building Checklist</h2>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <ul id="todo-list" class="space-y-4">
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo1" class="mr-4">
+                        <label for="todo1" class="text-lg">Gather your personal information (name, contact, etc.)</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo2" class="mr-4">
+                        <label for="todo2" class="text-lg">List your work experience with dates and descriptions</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo3" class="mr-4">
+                        <label for="todo3" class="text-lg">Include your education details</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo4" class="mr-4">
+                        <label for="todo4" class="text-lg">Add relevant skills and keywords</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo5" class="mr-4">
+                        <label for="todo5" class="text-lg">Check ATS compatibility</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" id="todo6" class="mr-4">
+                        <label for="todo6" class="text-lg">Download and review your resume</label>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>

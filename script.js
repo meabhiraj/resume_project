@@ -16,13 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // CTA button click handler
-    const ctaButton = document.querySelector('.hero-bg button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function() {
-            window.location.href = 'builder.html';
-        });
-    }
+    // CTA button click handler (removed since it's now a link)
 
     // ATS calculator form submission
     const atsForm = document.getElementById('ats-form');
@@ -57,20 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     resumeTextArea.value = text;
                     const score = calculateScore(text);
                     document.getElementById('ats-result').textContent = `Estimated ATS score: ${score}%`;
-                    // Redirect to login after checking ATS score
-                    setTimeout(function() {
-                        window.location.href = 'login.html';
-                    }, 2000);
                 };
                 // only read as text; PDFs/DOCs will appear as gibberish but this keeps simplicity
                 reader.readAsText(file);
             } else {
                 const score = calculateScore(resumeTextArea.value);
                 document.getElementById('ats-result').textContent = `Estimated ATS score: ${score}%`;
-                // Redirect to login after checking ATS score
-                setTimeout(function() {
-                    window.location.href = 'login.html';
-                }, 2000);
             }
         });
     }
@@ -96,25 +82,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Logout functionality
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-            alert('You have been logged out.');
-            window.location.href = 'login.html';
-        });
-    }
-
-    // Mobile logout functionality
-    const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-    if (logoutBtnMobile) {
-        logoutBtnMobile.addEventListener('click', function() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-            alert('You have been logged out.');
-            window.location.href = 'login.html';
+    // Todo list functionality
+    const todoList = document.getElementById('todo-list');
+    if (todoList) {
+        const checkboxes = todoList.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox, index) => {
+            // Load saved state
+            const saved = localStorage.getItem(`todo-${index}`);
+            if (saved === 'true') {
+                checkbox.checked = true;
+            }
+            // Save state on change
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(`todo-${index}`, this.checked);
+            });
         });
     }
 });

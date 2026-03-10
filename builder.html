@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Resume - Resume Builder</title>
+    <title>The Resume Builder - Create Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-900">
     <header class="bg-white shadow-sm relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
-                <div class="text-2xl font-bold blue-accent">Resume</div>
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="images/logo.png" alt="Resume Builder Logo" class="h-8 w-auto">
+                    <span class="text-2xl font-bold blue-accent hidden sm:inline">The Resume Builder</span>
+                </a>
                 <nav class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="builder.html" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
                     <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
                 </nav>
-                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button">☰</button>
+                <button class="md:hidden text-gray-700 text-2xl" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
             </div>
             <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg z-10">
                 <nav class="flex flex-col space-y-4 p-4">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="builder.html" class="text-gray-700 hover:text-blue-600 transition">Builder</a>
                     <a href="ats.html" class="text-gray-700 hover:text-blue-600 transition">ATS Score</a>
                     <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition">Courses</a>
                 </nav>
@@ -29,15 +35,15 @@
         </div>
     </header>
 
-    <section class="py-20">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 rounded-lg shadow">
+    <section class="py-10 sm:py-20">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-6 sm:p-8 rounded-lg shadow">
             <h1 class="text-3xl font-bold mb-6 text-center">Create Your Resume</h1>
             <div class="mb-6 p-4 bg-blue-50 rounded-lg">
                 <h3 class="text-lg font-semibold mb-2">Upload Existing Resume</h3>
                 <p class="text-gray-600 mb-4">Upload your resume file to analyze and improve it.</p>
                 <div>
-                    <label for="resume-upload" class="block font-semibold mb-2">Select Resume File (.txt only)</label>
-                    <input id="resume-upload" name="resume-upload" type="file" accept=".txt" class="w-full px-4 py-2 border border-blue-300 rounded-md" />
+                    <label for="resume-upload" class="block font-semibold mb-2">Select Resume File (.pdf or .txt)</label>
+                    <input id="resume-upload" name="resume-upload" type="file" accept=".pdf,.txt" class="w-full px-4 py-2 border border-blue-300 rounded-md" />
                     <button type="button" id="ai-improve-btn" class="mt-2 bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 transition">AI Improve Resume</button>
                 </div>
             </div>
@@ -93,14 +99,19 @@
                 <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Generate Resume & ATS Score</button>
             </form>
             <div id="resume-output" class="mt-10 hidden">
-                <h2 class="text-2xl font-bold mb-4">Your Resume Preview</h2>
-                <div id="resume-preview" class="bg-gray-100 p-6 rounded-lg mb-6"></div>
+                <div id="resume-preview" class="bg-gray-100 p-4 sm:p-6 rounded-lg mb-6"></div>
                 <div id="ats-score-output" class="bg-blue-50 p-4 rounded-lg text-blue-800 font-semibold text-center"></div>
             </div>
         </div>
     </section>
 
     <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
         // Resume form submit (manual entry)
         document.getElementById('resume-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -114,29 +125,6 @@
             const education = document.getElementById('education').value;
             const skills = document.getElementById('skills').value.split(',').map(s => s.trim()).filter(Boolean);
             const atsKeywords = document.getElementById('ats-keywords').value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
-
-            let html = `<div class='mb-2'><span class='font-bold text-lg'>${name}</span><br>`;
-            if(email) html += `<span class='text-gray-600 text-sm'>${email}</span><br>`;
-            if(phone) html += `<span class='text-gray-600 text-sm'>${phone}</span><br>`;
-            if(address) html += `<span class='text-gray-600 text-sm'>${address}</span><br>`;
-            if(linkedin) html += `<span class='text-blue-700 text-xs'><a href='${linkedin}' target='_blank'>${linkedin}</a></span>`;
-            html += `</div>`;
-            if(summary) html += `<div class='mb-2'><span class='font-semibold'>Summary:</span> ${summary}</div>`;
-            if(experience) {
-                html += `<div class='mb-2'><span class='font-semibold'>Experience:</span><ul class='list-disc pl-5'>`;
-                experience.split('\n').forEach(line => {
-                    if(line.trim()) html += `<li>${line}</li>`;
-                });
-                html += `</ul></div>`;
-            }
-            if(education) {
-                html += `<div class='mb-2'><span class='font-semibold'>Education:</span><ul class='list-disc pl-5'>`;
-                education.split('\n').forEach(line => {
-                    if(line.trim()) html += `<li>${line}</li>`;
-                });
-                html += `</ul></div>`;
-            }
-            if(skills.length) html += `<div class='mb-2'><span class='font-semibold'>Skills:</span> ${skills.map(s => `<span class='inline-block bg-blue-200 text-blue-800 px-2 py-0.5 rounded mr-1 mb-1'>${s}</span>`).join('')}</div>`;
 
             // ATS Score Calculation
             let atsScore = '';
@@ -155,7 +143,6 @@
                 atsScore = 'Enter ATS keywords to calculate score.';
             }
 
-            document.getElementById('resume-preview').innerHTML = html;
             document.getElementById('ats-score-output').innerHTML = atsScore;
             document.getElementById('resume-output').classList.remove('hidden');
             document.getElementById('resume-output').scrollIntoView({behavior: 'smooth'});
@@ -169,49 +156,141 @@
                 alert('Please select a resume file to improve.');
                 return;
             }
-            const reader = new FileReader();
-            reader.onload = async function(evt) {
-                const text = evt.target.result || '';
-                try {
-                    // Placeholder for AI API call (replace with actual API)
-                    const improvedText = await improveResumeWithAI(text);
-                    document.getElementById('resume-preview').innerHTML = `<div class='mb-2'><span class='font-bold text-lg'>AI-Improved Resume</span></div><pre class='whitespace-pre-wrap'>${improvedText}</pre>`;
-                    document.getElementById('ats-score-output').innerHTML = 'Resume improved with AI suggestions!';
-                    document.getElementById('resume-output').classList.remove('hidden');
-                    document.getElementById('resume-output').scrollIntoView({behavior: 'smooth'});
-                } catch (error) {
-                    alert('Error improving resume: ' + error.message);
+            // Send file as FormData to backend
+            const formData = new FormData();
+            formData.append('resume', file);
+            try {
+                const response = await fetch('http://localhost:4000/api/improve-resume-file', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.error || 'Failed to improve resume.');
                 }
-            };
-            reader.readAsText(file);
-        });
-
-        // Placeholder AI function (replace with actual API call)
-        async function improveResumeWithAI(text) {
-            // Example using OpenAI API (you need to add your API key)
-            const apiKey = 'YOUR_OPENAI_API_KEY'; // Replace with your key
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [{
-                        role: 'user',
-                        content: `Improve this resume for better ATS compatibility and professionalism: ${text}`
-                    }],
-                    max_tokens: 1000
-                })
-            });
-            const data = await response.json();
-            if (data.choices && data.choices[0]) {
-                return data.choices[0].message.content;
-            } else {
-                throw new Error('AI improvement failed');
+                const data = await response.json();
+                const improvedText = data.improved;
+                document.getElementById('resume-preview').innerHTML = renderResumePreview(improvedText);
+                document.getElementById('ats-score-output').innerHTML = 'Resume improved with AI suggestions!';
+                document.getElementById('resume-output').classList.remove('hidden');
+                document.getElementById('resume-output').scrollIntoView({behavior: 'smooth'});
+            } catch (error) {
+                alert('Error improving resume: ' + error.message);
             }
+        });
+        // Render resume preview in a professional, modern style
+        function renderResumePreview(text) {
+            // Remove the AI-Enhanced header and note if present
+            let clean = text.replace(/^AI-Enhanced Resume:\n*/i, '').replace(/\*Note:.*$/is, '').trim();
+            // Split into lines and try to group into sections
+            const lines = clean.split(/\r?\n/).filter(l => l.trim());
+            let html = "<div class='bg-white rounded-lg shadow p-4 sm:p-6 text-gray-900' style='max-width:500px;margin:auto;'>";
+
+            // Extract name, email, phone, address (assume first lines)
+            let name = '', email = '', phone = '', address = '';
+            let idx = 0;
+            if (lines.length > 0) { name = lines[idx++]; }
+            if (lines.length > idx && lines[idx].includes('@')) {
+                // Try to extract email and maybe phone
+                let contactLine = lines[idx++];
+                let emailMatch = contactLine.match(/[\w.-]+@[\w.-]+/);
+                let phoneMatch = contactLine.match(/\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/);
+                if (emailMatch) email = emailMatch[0];
+                if (phoneMatch) phone = phoneMatch[0];
+            }
+            if (lines.length > idx && (lines[idx].match(/\d{4}/) || lines[idx].length < 40)) {
+                address = lines[idx++];
+            }
+
+            // Header
+            html += `<div class='mb-2'>`;
+            if (name) html += `<div class='text-2xl font-bold text-blue-800 leading-tight'>${name}</div>`;
+            if (email || phone) {
+                html += `<div class='text-gray-700 text-sm mb-0.5'>`;
+                if (email) html += `<a href='mailto:${email}' class='text-blue-700 hover:underline'>${email}</a>`;
+                if (email && phone) html += ' | ';
+                if (phone) html += `${phone}`;
+                html += `</div>`;
+            }
+            if (address) html += `<div class='text-gray-600 text-sm mb-1'>${address}</div>`;
+            html += `</div><hr class='mb-3'>`;
+
+            // Section parsing
+            let section = '';
+            let buffer = [];
+            let flushSection = () => {
+                if (!section) return;
+                if (section === 'skills') {
+                    // Render as tags
+                    let skills = buffer.join(' ').split(/[,|]/).map(s => s.trim()).filter(Boolean);
+                    html += `<div class='font-semibold mt-4 mb-1'>Skills</div><div class='flex flex-wrap gap-2 mb-2'>`;
+                    skills.forEach(skill => {
+                        html += `<span class='bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-semibold'>${skill}</span>`;
+                    });
+                    html += `</div>`;
+                } else if (section === 'education') {
+                    html += `<div class='font-semibold mt-4 mb-1'>Education</div>`;
+                    buffer.forEach(line => {
+                        html += `<div class='mb-1'>${line}</div>`;
+                    });
+                } else if (section === 'experience') {
+                    html += `<div class='font-semibold mt-4 mb-1'>Experience</div>`;
+                    let inRole = false;
+                    buffer.forEach(line => {
+                        // Bold job titles, italic dates, bullets
+                        let m = line.match(/^(.*?)(,?\s*@?\s*[^,]+,?\s*)(\d{4}[^,\n]*)?(,?\s*.*)?$/);
+                        if (/^[-•]/.test(line.trim())) {
+                            if (!inRole) { html += "<ul class='list-disc pl-6 mb-2'>"; inRole = true; }
+                            html += `<li>${line.replace(/^[-•]\s*/, '')}</li>`;
+                        } else {
+                            if (inRole) { html += "</ul>"; inRole = false; }
+                            // Try to bold job title, italicize dates
+                            let jobMatch = line.match(/^(.*?)\s*,?\s*([\w .&@-]+)?\s*,?\s*(\d{4}[^,\n]*)?/);
+                            if (jobMatch && jobMatch[1]) {
+                                let job = jobMatch[1].trim();
+                                let company = jobMatch[2] ? jobMatch[2].trim() : '';
+                                let date = jobMatch[3] ? jobMatch[3].trim() : '';
+                                if (job) html += `<div class='font-semibold'>${job}${company ? ', <span class="font-normal">' + company + '</span>' : ''}</div>`;
+                                if (date) html += `<div class='italic text-gray-600 text-xs mb-1'>${date}</div>`;
+                            } else {
+                                html += `<div class='mb-1'>${line}</div>`;
+                            }
+                        }
+                    });
+                    if (inRole) html += "</ul>";
+                } else if (section === 'professional summary' || section === 'summary') {
+                    html += `<div class='font-semibold mt-4 mb-1'>Professional Summary</div>`;
+                    buffer.forEach(line => {
+                        html += `<div class='mb-1'>${line}</div>`;
+                    });
+                } else {
+                    // Generic section
+                    html += `<div class='font-semibold mt-4 mb-1'>${section.charAt(0).toUpperCase() + section.slice(1)}</div>`;
+                    buffer.forEach(line => {
+                        html += `<div class='mb-1'>${line}</div>`;
+                    });
+                }
+                buffer = [];
+                section = '';
+            };
+
+            for (; idx < lines.length; idx++) {
+                let line = lines[idx];
+                let secMatch = line.trim().toLowerCase().match(/^(professional summary|summary|experience|education|skills)[:：]?$/);
+                if (secMatch) {
+                    flushSection();
+                    section = secMatch[1];
+                } else {
+                    buffer.push(line);
+                }
+            }
+            flushSection();
+
+            html += "</div>";
+            return html;
         }
+
+        // The AI improvement is now handled by the backend API.
     </script>
 </body>
 </html>
