@@ -74,34 +74,28 @@
                 atsForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const keywordsText = document.getElementById('keywords').value.toLowerCase();
-                    const keywords = keywordsText.split(',').map(k => k.trim()).filter(k => k);
-                    if (keywords.length === 0) {
+                    const fileInput = document.getElementById('resume-file');
+                    if (!keywordsText.trim()) {
                         alert('Please enter at least one keyword.');
                         return;
                     }
-                    function calculateScore(text) {
-                        const resumeText = text.toLowerCase();
-                        let matches = 0;
-                        keywords.forEach(k => {
-                            const regex = new RegExp(`\\b${k}\\b`, 'g');
-                            const found = resumeText.match(regex);
-                            if (found) matches += found.length;
-                        });
-                        return Math.min(100, Math.round((matches / keywords.length) * 100));
-                    }
-                    const fileInput = document.getElementById('resume-file');
-                    if (fileInput && fileInput.files && fileInput.files[0]) {
-                        const file = fileInput.files[0];
-                        const reader = new FileReader();
-                        reader.onload = function(evt) {
-                            const text = evt.target.result || '';
-                            const score = calculateScore(text);
-                            document.getElementById('ats-result').textContent = `Estimated ATS score: ${score}%`;
-                        };
-                        reader.readAsText(file);
-                    } else {
+                    if (!(fileInput && fileInput.files && fileInput.files[0])) {
                         document.getElementById('ats-result').textContent = 'Please upload a resume file.';
+                        return;
                     }
+                    const keywords = keywordsText.split(/[,\s]+/).filter(k => k.length > 2);
+                    const file = fileInput.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        const resumeText = (evt.target.result || '').toLowerCase();
+                        let matchCount = 0;
+                        keywords.forEach(word => {
+                            if (resumeText.includes(word)) matchCount++;
+                        });
+                        const score = keywords.length > 0 ? Math.round((matchCount / keywords.length) * 100) : 0;
+                        document.getElementById('ats-result').textContent = `ATS Match Score: ${score}%`;
+                    };
+                    reader.readAsText(file);
                 });
             }
         });

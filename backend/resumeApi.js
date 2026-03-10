@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
+const axios = require('axios'); // Add axios for HTTP requests
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -57,6 +58,43 @@ app.post('/api/improve-resume', (req, res) => {
     const improved = improveResume(text);
     res.json({ improved });
 });
+
+// New endpoint to get ATS score from Flask API
+app.post('/api/ats-score', upload.single('resume'), async (req, res) => {
+    if (!req.file || !req.body.job_description) {
+        return res.status(400).json({ error: 'File and job description required.' });
+    }
+    try {
+        const formData = new FormData();
+        formData.append('resume', req.file.buffer, req.file.originalname);
+        formData.append('job_description', req.body.job_description);
+
+        const flaskRes = await axios.post('http://localhost:5000/score', formData, {
+            headers: {
+                ...formData.getHeaders()
+            }
+        });
+        res.json(flaskRes.data);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to get ATS score', details: err.message });
+    }
+});
+
+// ATS Score module for use in other files
+const atsScoreModule = {
+    async getAtsScore(resumeBuffer, resumeName, jobDescription) {
+        const FormData = require('form-data');
+        const formData = new FormData();
+        formData.append('resume', resumeBuffer, resumeName);
+        formData.append('job_description', jobDescription);
+        const response = await axios.post('http://localhost:5000/score', formData, {
+            headers: formData.getHeaders()
+        });
+        return response.data;
+    }
+};
+
+module.exports = atsScoreModule;
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Resume API running on port ${PORT}`));
